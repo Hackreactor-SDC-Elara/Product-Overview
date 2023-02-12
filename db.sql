@@ -117,7 +117,7 @@ CREATE TABLE `photos` (
 
 LOAD DATA INFILE '/home/sprung/hackreactor/Product-Overview/rawData/photosTest.csv'
 INTO TABLE photos
-FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+FIELDS TERMINATED BY ',' 
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 -- ---
