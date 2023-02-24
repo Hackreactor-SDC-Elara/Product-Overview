@@ -27,7 +27,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`productId`)
 );
 
-LOAD DATA INFILE '/home/sprung/hackreactor/Product-Overview/rawData/productTest.csv'
+LOAD DATA LOCAL INFILE '/home/sprung/hackreactor/Product-Overview/rawData/product.csv'
 INTO TABLE product
 FIELDS TERMINATED BY ',' ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
@@ -47,7 +47,7 @@ CREATE TABLE `Sku` (
   PRIMARY KEY (`skuId`)
 );
 
-LOAD DATA INFILE '/home/sprung/hackreactor/Product-Overview/rawData/skusTest.csv'
+LOAD DATA LOCAL INFILE '/home/sprung/hackreactor/Product-Overview/rawData/skus.csv'
 INTO TABLE Sku
 FIELDS TERMINATED BY ',' ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
@@ -71,7 +71,7 @@ CREATE TABLE `styles` (
 );
 
 
-LOAD DATA INFILE '/home/sprung/hackreactor/Product-Overview/rawData/stylesTest.csv'
+LOAD DATA LOCAL INFILE '/home/sprung/hackreactor/Product-Overview/rawData/styles.csv'
 INTO TABLE styles
 FIELDS TERMINATED BY ',' ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
@@ -94,7 +94,7 @@ CREATE TABLE `cart` (
 );
 
 
-LOAD DATA INFILE '/home/sprung/hackreactor/Product-Overview/rawData/cart.csv'
+LOAD DATA LOCAL INFILE '/home/sprung/hackreactor/Product-Overview/rawData/cart.csv'
 INTO TABLE cart
 FIELDS TERMINATED BY ',' ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
@@ -115,9 +115,9 @@ CREATE TABLE `photos` (
 );
 
 
-LOAD DATA INFILE '/home/sprung/hackreactor/Product-Overview/rawData/photosTest.csv'
+LOAD DATA LOCAL INFILE '/home/sprung/hackreactor/Product-Overview/rawData/photos.csv'
 INTO TABLE photos
-FIELDS TERMINATED BY ',' 
+FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 -- ---
