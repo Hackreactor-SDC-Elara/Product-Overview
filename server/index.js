@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+require('dotenv').config();
 const db = require('./dbConnect.js');
 
 app.get('/', (req, res) => {
@@ -13,11 +14,27 @@ app.get('/', (req, res) => {
 });
 
 app.get('/products', (req, res) => {
-  db.promise().query('SELECT * from product WHERE productId = 1')
+  const page = req.query.page ? parseInt(req.query.page) : 1;
+  const count = req.query.count ? (parseInt(req.query.count) - 1) : 4;
+  db.promise().query(`SELECT * from product WHERE productId BETWEEN ${page} AND ${page + count}`)
     .then(data => {
-      console.log('returned data: \n', data);
+      let returnData = [];
+      for(var x = 0; x < data[0].length; x++) {
+        returnData.push({
+          id: data[0][x].productId,
+          name: data[0][x].productName,
+          slogan: data[0][x].Slogan,
+          description: data[0][x].description,
+          category: data[0][x].category,
+          default_price: data[0][x].defaultPrice
+        });
+      }
+      res.status(200).send(returnData);
     });
-  res.send('Successful database query');
+});
+
+app.get('/loaderio-1713814f0e3e0ba3aea1b1bb67074a38.txt', (req, res) => {
+  res.send('loaderio-1713814f0e3e0ba3aea1b1bb67074a38');
 });
 
 app.listen(port, () => {
