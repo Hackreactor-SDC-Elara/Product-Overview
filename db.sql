@@ -121,6 +121,44 @@ FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 -- ---
+-- Table 'features'
+--
+-- ---
+
+DROP TABLE IF EXISTS `features`;
+
+CREATE TABLE `features` (
+  `featureId` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+  `productId` INTEGER NULL DEFAULT NULL,
+  `feature` VARCHAR(100) NULL DEFAULT NULL,
+  `value` VARCHAR(100) NULL DEFAULT NULL
+);
+
+LOAD DATA LOCAL INFILE '/home/sprung/hackreactor/Product-Overview/rawData/features.csv'
+INTO TABLE features
+FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+-- ---
+-- Table 'related'
+--
+-- ---
+
+
+DROP TABLE IF EXISTS `related`;
+
+CREATE TABLE `related` (
+  `relatedId` INTEGER NOT NULL AUTO_INCREMENT UNIQUE,
+  `currentProductId` INTEGER NULL DEFAULT NULL,
+  `relatedProductId` INTEGER NULL DEFAULT NULL
+);
+
+LOAD DATA LOCAL INFILE '/home/sprung/hackreactor/Product-Overview/rawData/related.csv'
+INTO TABLE related
+FIELDS TERMINATED BY ',' ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+-- ---
 -- Foreign Keys
 -- ---
 
@@ -128,6 +166,7 @@ ALTER TABLE `Sku` ADD FOREIGN KEY (styleId) REFERENCES `styles` (`styleId`);
 ALTER TABLE `styles` ADD FOREIGN KEY (productId) REFERENCES `product` (`productId`);
 ALTER TABLE `cart` ADD FOREIGN KEY (productId) REFERENCES `product` (`productId`);
 ALTER TABLE `photos` ADD FOREIGN KEY (styleId) REFERENCES `styles` (`styleId`);
+ALTER TABLE `features` ADD FOREIGN KEY (productId) REFERENCES `product` (`productId`);
 
 -- ---
 -- Table Properties
